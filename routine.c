@@ -14,7 +14,7 @@
 
 void	*routine(void *arg)
 {
-	t_philo		*phi;
+	t_philo	*phi;
 	int		end;
 
 	phi = (t_philo *)arg;
@@ -86,7 +86,7 @@ void	supervise(t_data *data)
 		pthread_mutex_lock(&data->phi[i].m_t_die);
 		time = data->phi[i].t_die;
 		pthread_mutex_unlock(&data->phi[i].m_t_die);
-		if (time <= (ft_time() - data-> t_start) && !data->phi[i].eating)
+		if (time <= (ft_time() - data->t_start) && !data->phi[i].eating)
 		{
 			pthread_mutex_lock(&data->mend);
 			data->end = 1;

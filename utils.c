@@ -68,7 +68,7 @@ void	ft_clean(t_data *data, int flag)
 	data->threads = NULL;
 }
 
-void	ft_print(char	*message, t_philo *phi, int flag)
+void	ft_print(char *message, t_philo *phi, int flag)
 {
 	int	time;
 	int	end;

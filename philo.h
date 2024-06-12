@@ -72,8 +72,8 @@ void					ft_sleep(int millisec);
 
 /* utils.c */
 int						ft_atoi_phi(char *str, int *arg);
-int						error(char *message, t_data *data, int flag);
-void					ft_clean(t_data *data, int flag);
+int						error(char *message, t_data *data);
+void					ft_clean(t_data *data);
 void					ft_print(char *message, t_philo *phi, int flag);
 
 #endif

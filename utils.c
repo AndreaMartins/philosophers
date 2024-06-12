@@ -31,18 +31,18 @@ int	ft_atoi_phi(char *str, int *arg)
 	return (0);
 }
 
-int	error(char *message, t_data *data, int flag)
+int	error(char *message, t_data *data)
 {
 	if (message)
 		printf("%s\n", message);
 	if (data && data->phi)
-		ft_clean(data, flag);
+		ft_clean(data);
 	if (!message)
 		return (0);
 	return (1);
 }
 
-void	ft_clean(t_data *data, int flag)
+void	ft_clean(t_data *data)
 {
 	int	i;
 
@@ -61,8 +61,6 @@ void	ft_clean(t_data *data, int flag)
 	free(data->phi);
 	data->phi = NULL;
 	i = -1;
-	while (data->threads && ++i < flag && data->threads[i])
-		pthread_detach(data->threads[i]);
 	if (data->threads)
 		free(data->threads);
 	data->threads = NULL;

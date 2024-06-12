@@ -55,15 +55,15 @@ int	parse_args(t_data *data, char **argv)
 	data->phi = NULL;
 	data->threads = NULL;
 	if (ft_atoi_phi(argv[i++], &data->n_phis))
-		return (error("Introduce number of philosophers", data, -1));
+		return (error("Introduce number of philosophers", data));
 	if (ft_atoi_phi(argv[i++], &data->t_die))
-		return (error("Introduce time to die of philosophers", data, -1));
+		return (error("Introduce time to die of philosophers", data));
 	if (ft_atoi_phi(argv[i++], &data->t_eat))
-		return (error("Introduce time to eat of philosophers", data, -1));
+		return (error("Introduce time to eat of philosophers", data));
 	if (ft_atoi_phi(argv[i++], &data->t_sleep))
-		return (error("Introduce time to sleep", data, -1));
+		return (error("Introduce time to sleep", data));
 	if (argv[i] && ft_atoi_phi(argv[i], &data->must_eat))
-		return (error("Introduce n times each philosopher must eat", data, -1));
+		return (error("Introduce n times each philosopher must eat", data));
 	return (0);
 }
 
@@ -75,20 +75,20 @@ int	init_data(t_data *data)
 	data->eaten = 0;
 	data->phi = malloc(sizeof(t_philo) * data->n_phis);
 	if (!data->phi)
-		return (error("Allocation failed", data, -1));
+		return (error("Allocation failed", data));
 	pthread_mutex_init(&data->mprint, NULL);
 	pthread_mutex_init(&data->mstart, NULL);
 	pthread_mutex_init(&data->meaten, NULL);
 	pthread_mutex_init(&data->mend, NULL);
 	data->threads = malloc(sizeof(pthread_t) * (data->n_phis + 1));
 	if (!data->threads)
-		return (error("Allocation failed", data, -1));
+		return (error("Allocation failed", data));
 	memset(data->threads, 0, sizeof(pthread_t) * (data->n_phis + 1));
 	pthread_mutex_lock(&data->mstart);
 	init_philos(data);
 	check = init_threads(data);
 	if (check != -1)
-		return (error("Error when creating threads", data, check));
+		return (error("Error when creating threads", data));
 	data->t_start = ft_time();
 	pthread_mutex_unlock(&data->mstart);
 	return (0);
@@ -116,8 +116,8 @@ int	main(int argc, char **argv)
 	while (++i < data.n_phis)
 	{
 		if (pthread_join(data.threads[i], NULL))
-			return (error("Error joining threads", &data, data.n_phis));
+			return (error("Error joining threads", &data));
 	}
-	ft_clean(&data, data.n_phis);
+	ft_clean(&data);
 	return (0);
 }
